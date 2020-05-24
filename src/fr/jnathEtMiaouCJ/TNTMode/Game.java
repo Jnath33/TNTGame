@@ -18,7 +18,7 @@ public class Game extends BukkitRunnable{
 	Main _main;
 	public Game(Main main) {
 		_main=main;
-		sousSpawn= new Location(_main.worldGame, 793.0, 13.0, -296.0);
+		sousSpawn= new Location(_main.world, 785.5, 13.0, -340.5);
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class Game extends BukkitRunnable{
 				}else {
 					_main.Life.put(pls, _main.Life.get(pls)-1);
 				}
-				pls.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.spawn"), Bukkit.getWorld("MapTNT")));
+				pls.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.spawn")));
 			}
 		}
 		for(Player pls : rmPlayer) {
@@ -54,19 +54,13 @@ public class Game extends BukkitRunnable{
 		sousSpawn.getBlock().setType(Material.COBBLESTONE);
 		if(_main.playerOnGame.size()==1) {
 			Bukkit.broadcastMessage(_main.playerOnGame.get(0).getDisplayName()+" à gagner");
-			_main.playerOnGame.clear();
-			_main.players.clear();
-			_main.state=State.AttenteDeJoueur;
-			Redémarage redémare = new Redémarage();
-			redémare.runTaskLater(_main, 300);
+			Redémarage redémare = new Redémarage(_main);
+			redémare.runTaskLater(_main, 600);
 			cancel();
 		} else if(_main.playerOnGame.size()==0) {
 			Bukkit.broadcastMessage("égaliter");
-			_main.playerOnGame.clear();
-			_main.players.clear();
-			_main.state=State.AttenteDeJoueur;
-			Redémarage redémare = new Redémarage();
-			redémare.runTaskLater(_main, 300);
+			Redémarage redémare = new Redémarage(_main);
+			redémare.runTaskLater(_main, 600);
 			cancel();
 		}
 		

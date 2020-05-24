@@ -19,7 +19,7 @@ public class Start implements CommandExecutor {
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		if(arg0 instanceof Player) {
 			for(Player pls : _main.players) {
-				pls.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.spawn"), _main.worldGame));
+				pls.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.spawn")));
 				ItemStack briquet = new ItemStack(Material.FLINT_AND_STEEL);
 				ItemMeta briquetM = briquet.getItemMeta();
 				briquetM.addEnchant(Enchantment.DURABILITY, 10, false);

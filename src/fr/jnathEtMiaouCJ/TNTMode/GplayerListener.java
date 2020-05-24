@@ -1,6 +1,5 @@
 package fr.jnathEtMiaouCJ.TNTMode;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -17,7 +16,6 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.inventory.ItemStack;
 
 public class GplayerListener implements Listener {
 	Main _main;
@@ -29,7 +27,12 @@ public class GplayerListener implements Listener {
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		if(!(_main.state==State.AttenteDeJoueur)) {
-			player.kickPlayer("Une partie est en court");
+		if(!_main.getConfig().getBoolean("TNTMode.bungee")) {
+			player.kickPlayer("Une partie est déja en cours");
+		} else {
+			String serv = _main.getConfig().getString("TNTMode.bungeeHubName");
+			_main.teleportServer(player, serv);
+		}
 			return;
 		}
 		player.getInventory().clear();
@@ -39,7 +42,7 @@ public class GplayerListener implements Listener {
 		player.setFoodLevel(20);
 		_main.players.add(player);
 		_main.playerOnGame.add(player);
-		player.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.location"), _main.world));
+		player.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.location")));
 	}
 	
 	@EventHandler
@@ -84,7 +87,7 @@ public class GplayerListener implements Listener {
 				}else {
 					_main.Life.put(player, _main.Life.get(player)-1);
 				}
-				player.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.spawn"), Bukkit.getWorld("MapTNT")));
+				player.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.spawn")));
 			}
 			event.setCancelled(true);
 		}
@@ -105,7 +108,8 @@ public class GplayerListener implements Listener {
 		}
 		if(event.getBlock()!=null) {
 			if(event.getBlock().getType()==Material.STONE){
-				event.getPlayer().getInventory().setItem(3, new ItemStack(Material.STONE, 32));
+				event.setCancelled(true);
+				event.getBlock().setType(Material.STONE);
 			} else if(event.getBlock().getType()==Material.HARD_CLAY) {
 				new TNTDist(event.getPlayer(), event.getBlock().getLocation());
 			}

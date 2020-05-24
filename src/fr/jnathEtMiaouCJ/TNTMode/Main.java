@@ -8,12 +8,15 @@ import java.util.List;
 import java.util.TreeMap;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
 
 
 public class Main extends JavaPlugin{
@@ -27,32 +30,41 @@ public class Main extends JavaPlugin{
 	List<Player> playerOnGame = new ArrayList<Player>();
 	TreeMap<Player, Integer> Life= new TreeMap<Player, Integer>(comparePlayerbyName);
 	String worldName;
-	public World world;
-	String worldGameName;
-	public World worldGame;
-	static Main _main;
+	World world;
 	State state;
 	@Override
 	public void onEnable() {
-		worldGameName = "MapTNT";
 		saveDefaultConfig();
 		worldName = getConfig().getString("TNTMode.world");
 		world = Bukkit.getWorld(worldName);
-		getServer().createWorld(new WorldCreator(worldGameName));
 		
 		state=State.AttenteDeJoueur;
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new GplayerListener(this), this);
 		this.getCommand("start").setExecutor(new Start(this));
-		worldGame = getServer().getWorld(worldGameName);
-		
-		System.out.println(worldGameName);
-		System.err.println(worldGame.getName());
 		
 		TNTDist.setMain(this);
+		
+		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}
 	
-	public Location stringToLoc(String locStr, World world) {
+	public void teleportServer(Player player, String server) {
+        ByteArrayDataOutput out = ByteStreams.newDataOutput();
+        out.writeUTF("Connect");
+        out.writeUTF(server);
+        
+      //Envoyer un message au joueur pour le pr�venir (FACULTATIF)
+        player.sendMessage(ChatColor.GREEN+"Vous etes envoye sur "+ChatColor.GOLD+server);
+
+        player.sendPluginMessage(this, "BungeeCord", out.toByteArray());
+	}
+	
+	@Override
+	public void onDisable() {
+		rejen();
+	}
+	
+	public Location stringToLoc(String locStr) {
 		String[] locSeparate = locStr.split(",");
 		double x = Double.valueOf(locSeparate[0]);
 		double y = Double.valueOf(locSeparate[1]);
@@ -65,10 +77,10 @@ public class Main extends JavaPlugin{
 			return new Location(world, x, y, z);			
 		}
 	}
-	public static void rejen() {
-		Bukkit.unloadWorld(Bukkit.getWorld("MapTNT"), false);
-		File worldFile = new File("MapTNT");
-		File worldCopyFile = new File("MapTNT"+"-copy");
+	public void rejen() {
+		Bukkit.unloadWorld(world, false);
+		File worldFile = new File(world.getName());
+		File worldCopyFile = new File(worldName+"-copy");
 		rejen.deleateWorld(worldFile);
 		try {
 			rejen.copyWorld(worldCopyFile, worldFile);
@@ -76,6 +88,5 @@ public class Main extends JavaPlugin{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Bukkit.createWorld(new WorldCreator("MapTNT"));		
 	}
 }

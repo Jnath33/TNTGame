@@ -7,18 +7,26 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class Redémarage extends BukkitRunnable{
 	Player _player;
-	public Redémarage () {
-		Bukkit.broadcastMessage("Le serveur redémarera dans 15s");
+	Main _main;
+	public Redémarage (Main main) {
+		_main=main;
+		Bukkit.broadcastMessage("Le serveur redémarera dans 30s");
 		for(Player pls : Bukkit.getOnlinePlayers())
 			pls.setGameMode(GameMode.SPECTATOR);
 	}
 
 	@Override
 	public void run() {
-		for(Player pls : Bukkit.getOnlinePlayers()) {
-			pls.kickPlayer("Le serveur redémare");
+		if(!_main.getConfig().getBoolean("TNTMode.bungee")) {
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				pls.kickPlayer("Le serveur redémare");
+			}
+		} else {
+			String serv = _main.getConfig().getString("TNTMode.bungeeHubName");
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				_main.teleportServer(pls, serv);
+			}
 		}
-		Main.rejen();
-		
+		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
 	}
 }
