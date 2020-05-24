@@ -1,0 +1,8 @@
+name: TNTMode
+version: 0.5
+author: jnath&miaouCJ
+main: fr.jnathEtMiaouCJ.TNTMode.Main
+commands:
+  start:
+    description: permet de lancer le serveurs manuellement
+    permission: start.use
