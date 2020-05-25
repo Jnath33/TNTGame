@@ -22,6 +22,7 @@ import org.bukkit.inventory.ItemStack;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
+import fr.jnathEtMiaouCJ.TNTMode.task.TNTWaitBreak;
 
 public class GplayerListener implements Listener {
 	Main _main;
@@ -76,6 +77,12 @@ public class GplayerListener implements Listener {
 		if(event.getBlock().getType()==Material.HARD_CLAY) {
 			TNTDist.rm(event.getBlock().getLocation());
 		}
+		if(event.getBlock().getType()==Material.TNT) {
+			if(_main.canBreakTNT.get(event.getPlayer())) {
+				TNTWaitBreak wait = new TNTWaitBreak(_main, event.getPlayer());
+				wait.runTaskLater(_main, 5);
+			}
+		}
 	}
 	
 	@EventHandler
@@ -128,6 +135,11 @@ public class GplayerListener implements Listener {
 				event.getPlayer().getInventory().setItem(3, new ItemStack(Material.STONE, 32));
 			} else if(event.getBlock().getType()==Material.HARD_CLAY) {
 				new TNTDist(event.getPlayer(), event.getBlock().getLocation());
+			} else {
+				event.setCancelled(true);
+			}
+			if(event.getBlock().getLocation().getBlockY()>64) {
+				event.setCancelled(true);
 			}
 		}
 		

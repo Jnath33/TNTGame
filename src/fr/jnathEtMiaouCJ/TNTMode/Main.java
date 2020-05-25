@@ -38,6 +38,7 @@ public class Main extends JavaPlugin{
 	public List<Player> players = new ArrayList<Player>();
 	public List<Player> playerOnGame = new ArrayList<Player>();
 	public TreeMap<Player, Integer> Life= new TreeMap<Player, Integer>(comparePlayerbyName);
+	public Map<Player, Boolean> canBreakTNT = new HashMap<Player, Boolean>();
 	String worldName;
 	public World world;
 	public State state;

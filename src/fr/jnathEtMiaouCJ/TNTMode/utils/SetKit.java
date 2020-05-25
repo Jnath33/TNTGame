@@ -13,14 +13,14 @@ import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 public class SetKit {
 	public static void set() {
 		List<ItemPlace> itemPlace = new ArrayList<ItemPlace>();
-		itemPlace.add(new ItemPlace(new ItemStack(Material.LEATHER_CHESTPLATE, 1), 102));
-		new Kit("Basic", 5, itemPlace);
+		itemPlace.add(new ItemPlace(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1), 102));
+		new Kit("Basic", 4, itemPlace);
 		
 
 		List<ItemPlace> itemPlace2 = new ArrayList<ItemPlace>();
 		itemPlace2.add(new ItemPlace(new ItemStack(Material.NETHER_STAR, 1), 7));
 		itemPlace2.add(new ItemPlace(new ItemStack(Material.HARD_CLAY, 1, (short) 5),8));
-		itemPlace.add(new ItemPlace(new ItemStack(Material.LEATHER_CHESTPLATE, 1), 102));
+		itemPlace.add(new ItemPlace(new ItemStack(Material.LEATHER_HELMET, 1), 103));
 		new Kit("Distance", 3, itemPlace2);
 		
 		List<ItemPlace> itemPlace3 = new ArrayList<ItemPlace>();
@@ -30,7 +30,7 @@ public class SetKit {
 		itemPlace3.add(new ItemPlace(Utils.createItem("§cTNT cube(7×7)", Material.COBBLESTONE, 1), 8));
 		new Kit("builder", 2, itemPlace3);
 
-		new Kit("More TNT", 7, new ArrayList<ItemPlace>());
+		new Kit("More TNT", 8, new ArrayList<ItemPlace>());
 		
 	}
 }
