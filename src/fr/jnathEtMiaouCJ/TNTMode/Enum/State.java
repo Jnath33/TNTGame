@@ -1,4 +1,4 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.Enum;
 
 public enum State {
 	AttenteDeJoueur, Lancement, Partie, Fin;

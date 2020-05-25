@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.jnathEtMiaouCJ.TNTMode.Main;
-import fr.jnathEtMiaouCJ.TNTMode.State;
+import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 
 
@@ -53,8 +53,8 @@ public class Game extends BukkitRunnable{
 		}
 		if(time==30) {
 			for(Player pls : _main.playerOnGame) {
-				if(!(pls.getInventory().getItem(0).getAmount()+Kit.getTNT(PlayerKit.getKit(pls))>64)) {
-					pls.getInventory().addItem(new ItemStack(Material.TNT, Kit.getTNT(PlayerKit.getKit(pls))));
+				if(!(pls.getInventory().getItem(0).getAmount()+Kit.getTNT(_main.playerKit.get(pls))>64)) {
+					pls.getInventory().addItem(new ItemStack(Material.TNT, Kit.getTNT(_main.playerKit.get(pls))));
 				}
 			}
 			time=0;

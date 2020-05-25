@@ -1,4 +1,4 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -19,8 +19,8 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.jnathEtMiaouCJ.TNTMode.Main;
-import fr.jnathEtMiaouCJ.TNTMode.State;
-import fr.jnathEtMiaouCJ.TNTMode.TNTDist;
+import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 
 public class GplayerListener implements Listener {
 	Main _main;

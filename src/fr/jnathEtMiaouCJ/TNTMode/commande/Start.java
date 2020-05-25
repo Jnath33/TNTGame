@@ -1,4 +1,4 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.commande;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.jnathEtMiaouCJ.TNTMode.Main;
+import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
 import fr.jnathEtMiaouCJ.TNTMode.task.Game;
 
 public class Start implements CommandExecutor {

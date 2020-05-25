@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 
 import org.bukkit.Bukkit;
@@ -18,7 +20,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
+import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
+import fr.jnathEtMiaouCJ.TNTMode.commande.Start;
 import fr.jnathEtMiaouCJ.TNTMode.listeners.GplayerListener;
+import fr.jnathEtMiaouCJ.TNTMode.utils.rejen;
 
 
 public class Main extends JavaPlugin{
@@ -34,6 +41,7 @@ public class Main extends JavaPlugin{
 	String worldName;
 	public World world;
 	public State state;
+	public Map<Player, Kit> playerKit = new HashMap<Player, Kit>();
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();

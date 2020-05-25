@@ -1,4 +1,4 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.MyClass;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +6,7 @@ import java.util.Map;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.task.gainClai;
 
 public class TNTDist {
