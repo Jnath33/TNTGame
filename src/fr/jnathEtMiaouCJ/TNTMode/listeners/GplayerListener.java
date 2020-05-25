@@ -21,6 +21,7 @@ import org.bukkit.inventory.ItemStack;
 
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.task.TNTWaitBreak;
 
@@ -165,6 +166,19 @@ public class GplayerListener implements Listener {
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
+		if(event.getInventory()!=null&&event.getInventory().getName().contains("§cKit selector")) {
+			if(event.getCurrentItem()!=null) {
+				if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cBasic")) {
+					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("Basic"));
+				}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cTelecom")) {
+					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("Distance"));
+				}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cBuilder")) {
+					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("builder"));
+				}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cMax TNT")) {
+					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("More TNT"));
+				}
+			}
+		}
 		event.setCancelled(true);
 	}
 }

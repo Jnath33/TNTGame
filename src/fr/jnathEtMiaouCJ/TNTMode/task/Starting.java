@@ -5,18 +5,70 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.jnath.Utils.Utils;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 
 public class Starting extends BukkitRunnable{
 	Main _main;
+	Inventory inv = Bukkit.createInventory(null, 54,"§cKit selector");
 	int time=20;
 	public Starting(Main main) {
 		_main =main;
+		
+		ItemStack wall1=new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 15);
+		ItemStack wall2=new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
+		inv.setItem(0, wall1);
+		inv.setItem(1, wall1);
+		inv.setItem(9, wall1);
+		
+		inv.setItem(2, wall2);
+		inv.setItem(3, wall2);
+		inv.setItem(4, wall2);
+		inv.setItem(5, wall2);
+		inv.setItem(6, wall2);
+
+		inv.setItem(7, wall1);
+		inv.setItem(8, wall1);
+		inv.setItem(17, wall1);
+
+		inv.setItem(26, wall2);
+		inv.setItem(35, wall2);
+		
+		inv.setItem(36, wall1);
+		inv.setItem(45, wall1);
+		inv.setItem(46, wall1);
+		
+		inv.setItem(47, wall2);
+		inv.setItem(48, wall2);
+		inv.setItem(49, wall2);
+		inv.setItem(50, wall2);
+		inv.setItem(51, wall2);
+
+		inv.setItem(44, wall1);
+		inv.setItem(53, wall1);
+		inv.setItem(52, wall1);
+		
+		inv.setItem(18, wall2);
+		inv.setItem(27, wall2);
+		
+		inv.setItem(10, wall2);
+		inv.setItem(37, wall2);
+		inv.setItem(43, wall2);
+		inv.setItem(16, wall2);
+		
+		inv.setItem(11, Utils.createItem("§cBasic", Material.IRON_PICKAXE, 1));
+		inv.setItem(15, Utils.createItem("§cTelecom", Material.NETHER_STAR, 1));
+		inv.setItem(38, Utils.createItem("§cBuilder", Material.BRICK, 1));
+		inv.setItem(42, Utils.createItem("§cMax TNT", Material.TNT, 4));
+		for(Player player : _main.players) {
+			player.openInventory(inv);
+		}
 	}
 
 	@Override

@@ -13,14 +13,14 @@ import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 public class SetKit {
 	public static void set() {
 		List<ItemPlace> itemPlace = new ArrayList<ItemPlace>();
-		itemPlace.add(new ItemPlace(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1), 32));
+		itemPlace.add(new ItemPlace(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1), 38));
 		new Kit("Basic", 4, itemPlace);
 		
 
 		List<ItemPlace> itemPlace2 = new ArrayList<ItemPlace>();
 		itemPlace2.add(new ItemPlace(new ItemStack(Material.NETHER_STAR, 1), 7));
 		itemPlace2.add(new ItemPlace(new ItemStack(Material.HARD_CLAY, 1, (short) 5),8));
-		itemPlace.add(new ItemPlace(new ItemStack(Material.LEATHER_HELMET, 1), 103));
+		itemPlace.add(new ItemPlace(new ItemStack(Material.LEATHER_HELMET, 1), 39));
 		new Kit("Distance", 3, itemPlace2);
 		
 		List<ItemPlace> itemPlace3 = new ArrayList<ItemPlace>();
