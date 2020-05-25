@@ -7,6 +7,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 
+
 public class Redémarage extends BukkitRunnable{
 	Player _player;
 	Main _main;

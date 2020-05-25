@@ -9,13 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
 import fr.jnathEtMiaouCJ.TNTMode.Main;
@@ -32,12 +33,12 @@ public class GplayerListener implements Listener {
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
 		if(!(_main.state==State.AttenteDeJoueur)) {
-		if(!_main.getConfig().getBoolean("TNTMode.bungee")) {
-			player.kickPlayer("Une partie est déja en cours");
-		} else {
-			String serv = _main.getConfig().getString("TNTMode.bungeeHubName");
-			_main.teleportServer(player, serv);
-		}
+			if(!_main.getConfig().getBoolean("TNTMode.bungee")) {
+				player.kickPlayer("Une partie est déja en cours");
+			} else {
+				String serv = _main.getConfig().getString("TNTMode.bungeeHubName");
+				_main.teleportServer(player, serv);
+			}
 			return;
 		}
 		player.getInventory().clear();
@@ -45,8 +46,6 @@ public class GplayerListener implements Listener {
 		player.setGameMode(GameMode.SURVIVAL);
 		player.setHealth(20);
 		player.setFoodLevel(20);
-		_main.players.add(player);
-		_main.playerOnGame.add(player);
 		player.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.location")));
 	}
 	
@@ -103,6 +102,19 @@ public class GplayerListener implements Listener {
 				}
 		}
 		event.setCancelled(true);
+	}
+	
+	@EventHandler
+	public void onQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
+		if(_main.state!=State.AttenteDeJoueur) {
+			if(_main.players.contains(player)) {
+				_main.players.remove(player);
+			}
+			if(_main.playerOnGame.contains(player)) {
+				_main.playerOnGame.remove(player);
+			}
+		}
 	}
 	
 	@EventHandler
