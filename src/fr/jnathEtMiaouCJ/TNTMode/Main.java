@@ -25,6 +25,7 @@ import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.commande.Start;
 import fr.jnathEtMiaouCJ.TNTMode.listeners.GplayerListener;
+import fr.jnathEtMiaouCJ.TNTMode.utils.SetKit;
 import fr.jnathEtMiaouCJ.TNTMode.utils.rejen;
 
 
@@ -55,6 +56,8 @@ public class Main extends JavaPlugin{
 		this.getCommand("start").setExecutor(new Start(this));
 		
 		TNTDist.setMain(this);
+		
+		SetKit.set();
 		
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}

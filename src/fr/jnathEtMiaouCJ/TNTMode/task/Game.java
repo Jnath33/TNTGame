@@ -53,7 +53,7 @@ public class Game extends BukkitRunnable{
 		}
 		if(time==30) {
 			for(Player pls : _main.playerOnGame) {
-				if(!(pls.getInventory().getItem(0).getAmount()+Kit.getTNT(_main.playerKit.get(pls))>64)) {
+				if(!(pls.getInventory().getItem(0)!=null&&pls.getInventory().getItem(0).getAmount()+Kit.getTNT(_main.playerKit.get(pls))>64)) {
 					pls.getInventory().addItem(new ItemStack(Material.TNT, Kit.getTNT(_main.playerKit.get(pls))));
 				}
 			}

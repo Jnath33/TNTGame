@@ -14,7 +14,7 @@ import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 
 public class Starting extends BukkitRunnable{
 	Main _main;
-	int time=10;
+	int time=20;
 	public Starting(Main main) {
 		_main =main;
 	}
@@ -24,7 +24,7 @@ public class Starting extends BukkitRunnable{
 		for(Player player : _main.players) {
 			player.setLevel(time);
 		}
-		if(time==10||time<=5) {
+		if(time==20||time==10||time<=5) {
 			Bukkit.broadcastMessage(ChatColor.RED+"La partie commence dans "+ChatColor.GREEN+time+ChatColor.GOLD+"s");
 		}
 		time --;
