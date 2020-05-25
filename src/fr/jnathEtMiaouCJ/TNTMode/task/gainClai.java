@@ -1,4 +1,4 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.task;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

@@ -1,4 +1,4 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +11,20 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.jnathEtMiaouCJ.TNTMode.Main;
+import fr.jnathEtMiaouCJ.TNTMode.State;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
+
 
 public class Game extends BukkitRunnable{
 	int time = 0;
-	Location sousSpawn;
+	List<Location> sousSpawn = new ArrayList<Location>();
 	Main _main;
 	public Game(Main main) {
 		_main=main;
-		sousSpawn= new Location(_main.world, 785.5, 13.0, -340.5);
+		for(String locStr : _main.getConfig().getStringList("TNTMode.locationInfiniteBlock")) {
+			sousSpawn.add(_main.stringToLoc(locStr));
+		}
 	}
 	
 	@Override
@@ -47,11 +53,15 @@ public class Game extends BukkitRunnable{
 		}
 		if(time==30) {
 			for(Player pls : _main.playerOnGame) {
-				pls.getInventory().addItem(new ItemStack(Material.TNT,2 ));
+				if(!(pls.getInventory().getItem(0).getAmount()+Kit.getTNT(PlayerKit.getKit(pls))>64)) {
+					pls.getInventory().addItem(new ItemStack(Material.TNT, Kit.getTNT(PlayerKit.getKit(pls))));
+				}
 			}
 			time=0;
 		}
-		sousSpawn.getBlock().setType(Material.COBBLESTONE);
+		for(Location sousSpawnBlock : sousSpawn) {
+			sousSpawnBlock.getBlock().setType(Material.COBBLESTONE);			
+		}
 		if(_main.playerOnGame.size()==1) {
 			Bukkit.broadcastMessage(_main.playerOnGame.get(0).getDisplayName()+" à gagner");
 			Redémarage redémare = new Redémarage(_main);

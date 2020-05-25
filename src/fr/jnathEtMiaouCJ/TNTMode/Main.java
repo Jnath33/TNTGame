@@ -18,6 +18,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
+import fr.jnathEtMiaouCJ.TNTMode.listeners.GplayerListener;
+
 
 public class Main extends JavaPlugin{
 	Comparator<Player> comparePlayerbyName = new Comparator<Player>() {
@@ -26,12 +28,12 @@ public class Main extends JavaPlugin{
 		return o1.getName().compareTo(o2.getName());
 	}
 };
-	List<Player> players = new ArrayList<Player>();
-	List<Player> playerOnGame = new ArrayList<Player>();
-	TreeMap<Player, Integer> Life= new TreeMap<Player, Integer>(comparePlayerbyName);
+	public List<Player> players = new ArrayList<Player>();
+	public List<Player> playerOnGame = new ArrayList<Player>();
+	public TreeMap<Player, Integer> Life= new TreeMap<Player, Integer>(comparePlayerbyName);
 	String worldName;
-	World world;
-	State state;
+	public World world;
+	public State state;
 	@Override
 	public void onEnable() {
 		saveDefaultConfig();

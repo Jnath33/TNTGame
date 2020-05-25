@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.jnathEtMiaouCJ.TNTMode.task.Game;
+
 public class Start implements CommandExecutor {
 	Main _main;
 	public Start(Main main) {
@@ -22,7 +24,7 @@ public class Start implements CommandExecutor {
 				pls.teleport(_main.stringToLoc(_main.getConfig().getString("TNTMode.spawn")));
 				ItemStack briquet = new ItemStack(Material.FLINT_AND_STEEL);
 				ItemMeta briquetM = briquet.getItemMeta();
-				briquetM.addEnchant(Enchantment.DURABILITY, 10, false);
+				briquetM.addEnchant(Enchantment.DURABILITY, 10, true);
 				pls.getInventory().clear();
 				pls.getInventory().setItem(2, briquet);
 				pls.getInventory().setItem(3, new ItemStack(Material.STONE, 32));

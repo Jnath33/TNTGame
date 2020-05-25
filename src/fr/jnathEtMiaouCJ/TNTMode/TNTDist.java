@@ -6,6 +6,8 @@ import java.util.Map;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import fr.jnathEtMiaouCJ.TNTMode.task.gainClai;
+
 public class TNTDist {
 	private Player _player;
 	private Location _tntLoc;

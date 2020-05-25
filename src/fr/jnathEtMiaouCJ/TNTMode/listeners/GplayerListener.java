@@ -1,4 +1,4 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.listeners;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -16,6 +16,11 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.inventory.ItemStack;
+
+import fr.jnathEtMiaouCJ.TNTMode.Main;
+import fr.jnathEtMiaouCJ.TNTMode.State;
+import fr.jnathEtMiaouCJ.TNTMode.TNTDist;
 
 public class GplayerListener implements Listener {
 	Main _main;
@@ -108,8 +113,7 @@ public class GplayerListener implements Listener {
 		}
 		if(event.getBlock()!=null) {
 			if(event.getBlock().getType()==Material.STONE){
-				event.setCancelled(true);
-				event.getBlock().setType(Material.STONE);
+				event.getPlayer().getInventory().setItem(3, new ItemStack(Material.STONE, 32));
 			} else if(event.getBlock().getType()==Material.HARD_CLAY) {
 				new TNTDist(event.getPlayer(), event.getBlock().getLocation());
 			}

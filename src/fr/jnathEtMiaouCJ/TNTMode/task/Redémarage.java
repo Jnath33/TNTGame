@@ -1,9 +1,11 @@
-package fr.jnathEtMiaouCJ.TNTMode;
+package fr.jnathEtMiaouCJ.TNTMode.task;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import fr.jnathEtMiaouCJ.TNTMode.Main;
 
 public class Redémarage extends BukkitRunnable{
 	Player _player;
