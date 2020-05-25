@@ -13,7 +13,7 @@ import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 public class SetKit {
 	public static void set() {
 		List<ItemPlace> itemPlace = new ArrayList<ItemPlace>();
-		itemPlace.add(new ItemPlace(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1), 102));
+		itemPlace.add(new ItemPlace(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1), 32));
 		new Kit("Basic", 4, itemPlace);
 		
 

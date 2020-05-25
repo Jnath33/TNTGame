@@ -41,6 +41,7 @@ public class Starting extends BukkitRunnable{
 				pls.getInventory().clear();
 				pls.getInventory().setItem(2, briquet);
 				pls.getInventory().setItem(3, new ItemStack(Material.STONE, 32));
+				_main.canBreakTNT.put(pls, true);
 			}
 			Game game = new Game(_main);
 			game.runTaskTimer(_main, 300, 2);

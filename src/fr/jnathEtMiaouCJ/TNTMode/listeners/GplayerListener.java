@@ -81,6 +81,9 @@ public class GplayerListener implements Listener {
 			if(_main.canBreakTNT.get(event.getPlayer())) {
 				TNTWaitBreak wait = new TNTWaitBreak(_main, event.getPlayer());
 				wait.runTaskLater(_main, 5);
+			}else {
+				event.getPlayer().sendMessage("§cAttender la fin du cooldown pour recasser de la tnt");
+				event.setCancelled(true);
 			}
 		}
 	}
@@ -135,7 +138,10 @@ public class GplayerListener implements Listener {
 				event.getPlayer().getInventory().setItem(3, new ItemStack(Material.STONE, 32));
 			} else if(event.getBlock().getType()==Material.HARD_CLAY) {
 				new TNTDist(event.getPlayer(), event.getBlock().getLocation());
-			} else {
+			} else if(event.getBlock().getType()==Material.TNT) {
+				return;
+			}
+			else {
 				event.setCancelled(true);
 			}
 			if(event.getBlock().getLocation().getBlockY()>64) {
