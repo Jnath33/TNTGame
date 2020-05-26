@@ -25,6 +25,7 @@ import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.commande.Start;
 import fr.jnathEtMiaouCJ.TNTMode.listeners.GplayerListener;
+import fr.jnathEtMiaouCJ.TNTMode.listeners.KitListeners;
 import fr.jnathEtMiaouCJ.TNTMode.utils.SetKit;
 import fr.jnathEtMiaouCJ.TNTMode.utils.rejen;
 
@@ -53,6 +54,7 @@ public class Main extends JavaPlugin{
 		state=State.AttenteDeJoueur;
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new GplayerListener(this), this);
+		pm.registerEvents(new KitListeners(this), this);
 		this.getCommand("start").setExecutor(new Start(this));
 		
 		TNTDist.setMain(this);

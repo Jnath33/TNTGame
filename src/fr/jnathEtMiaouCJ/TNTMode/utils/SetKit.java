@@ -26,7 +26,7 @@ public class SetKit {
 		List<ItemPlace> itemPlace3 = new ArrayList<ItemPlace>();
 		itemPlace3.add(new ItemPlace(Utils.createItem("§cCanon build", Material.STICK, 2), 5));
 		itemPlace3.add(new ItemPlace(Utils.createItem("§cTower", Material.ANVIL, 2), 6));
-		itemPlace3.add(new ItemPlace(Utils.createItem("§cTNT cube(3×3)", Material.STONE, 1), 7));
+		itemPlace3.add(new ItemPlace(Utils.createItem("§cTNT cube(3×3)", Material.MOSSY_COBBLESTONE, 1), 7));
 		itemPlace3.add(new ItemPlace(Utils.createItem("§cTNT cube(7×7)", Material.COBBLESTONE, 1), 8));
 		new Kit("builder", 2, itemPlace3);
 
