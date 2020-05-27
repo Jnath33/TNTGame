@@ -21,11 +21,11 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
+import fr.jnath.TNTMode.FichierPlayerData;
+import fr.jnath.TNTMode.Kit;
+import fr.jnath.TNTMode.PlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.FichierPlayerData;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.PlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.task.TNTWaitBreak;
 

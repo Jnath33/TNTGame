@@ -12,9 +12,9 @@ import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.BukkitUtil;
 
+import fr.jnath.TNTMode.ItemPlace;
 import fr.jnath.Utils.Utils;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.ItemPlace;
 
 public class KitListeners implements Listener{
 	

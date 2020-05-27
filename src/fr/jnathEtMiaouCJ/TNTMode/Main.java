@@ -20,14 +20,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
+import fr.jnath.TNTMode.Kit;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.FichierPlayerData;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.commande.Start;
 import fr.jnathEtMiaouCJ.TNTMode.listeners.GplayerListener;
 import fr.jnathEtMiaouCJ.TNTMode.listeners.KitListeners;
-import fr.jnathEtMiaouCJ.TNTMode.utils.SetKit;
 import fr.jnathEtMiaouCJ.TNTMode.utils.rejen;
 
 
@@ -58,13 +56,6 @@ public class Main extends JavaPlugin{
 		this.getCommand("start").setExecutor(new Start(this));
 		
 		TNTDist.setMain(this);
-		
-		SetKit.set();
-		
-		FichierPlayerData.setDefauldRepertory(getConfig().getString("TNTMode.relativeFolder"));
-		if(!new File(getConfig().getString("TNTMode.relativeFolder")).exists()) {
-			new File(getConfig().getString("TNTMode.relativeFolder")).mkdir();
-		}
 		
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}

@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.jnath.TNTMode.Kit;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 
 
 public class Game extends BukkitRunnable{

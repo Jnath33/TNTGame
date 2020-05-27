@@ -12,10 +12,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.jnath.TNTMode.Kit;
+import fr.jnath.TNTMode.PlayerData;
 import fr.jnath.Utils.Utils;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
-import fr.jnathEtMiaouCJ.TNTMode.MyClass.PlayerData;
 
 public class Starting extends BukkitRunnable{
 	Main _main;
