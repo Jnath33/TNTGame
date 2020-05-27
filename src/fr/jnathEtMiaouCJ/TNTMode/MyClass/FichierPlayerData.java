@@ -62,7 +62,8 @@ public class FichierPlayerData{
 	public static void init(String uid, Player player) {
 		if(!new File(repertory+uid).exists()) {
 			new File(repertory+uid);
-		}if(!new File(repertory+uid+"/"+nomDuFichier).exists()) {
+		}
+		if(!new File(repertory+uid+"/"+nomDuFichier).exists()) {
 			new File(repertory+uid+"/"+nomDuFichier);
 		}else {
 			FichierPlayerData file = new FichierPlayerData(uid);
@@ -79,8 +80,8 @@ public class FichierPlayerData{
 		FichierPlayerData file = new FichierPlayerData(uid);
 		try {
 			file.ouvrir("E");
-			List<Kit> kit = new ArrayList<Kit>();
-			kit.add(Kit.getKit("Basic"));
+			List<String> kit = new ArrayList<String>();
+			kit.add("Basic");
 			file.ecrire(new PlayerData(kit , 0, 0, player));
 			file.fermer();
 		} catch (IOException e) {

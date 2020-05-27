@@ -19,11 +19,15 @@ import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 public class Game extends BukkitRunnable{
 	int time = 0;
 	List<Location> sousSpawn = new ArrayList<Location>();
+	List<Location> airSpawn = new ArrayList<Location>();
 	Main _main;
 	public Game(Main main) {
 		_main=main;
 		for(String locStr : _main.getConfig().getStringList("TNTMode.locationInfiniteBlock")) {
 			sousSpawn.add(_main.stringToLoc(locStr));
+		}
+		for(String locStr : _main.getConfig().getStringList("TNTMode.locationInfiniteBlock")) {
+			airSpawn.add(_main.stringToLoc(locStr));
 		}
 	}
 	
@@ -61,6 +65,9 @@ public class Game extends BukkitRunnable{
 		}
 		for(Location sousSpawnBlock : sousSpawn) {
 			sousSpawnBlock.getBlock().setType(Material.COBBLESTONE);			
+		}
+		for(Location airSpawnBlock : airSpawn) {
+			airSpawnBlock.getBlock().setType(Material.AIR);			
 		}
 		if(_main.playerOnGame.size()==1) {
 			Bukkit.broadcastMessage(_main.playerOnGame.get(0).getDisplayName()+" à gagner");

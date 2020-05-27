@@ -1,5 +1,7 @@
 package fr.jnathEtMiaouCJ.TNTMode.task;
 
+import java.util.Collection;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,61 +15,36 @@ import org.bukkit.scheduler.BukkitRunnable;
 import fr.jnath.Utils.Utils;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.PlayerData;
 
 public class Starting extends BukkitRunnable{
 	Main _main;
-	Inventory inv = Bukkit.createInventory(null, 54,"§cKit selector");
-	int time=20;
+	int time=25;
 	public Starting(Main main) {
-		_main =main;
-		
-		ItemStack wall1=new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 15);
-		ItemStack wall2=new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 7);
-		inv.setItem(0, wall1);
-		inv.setItem(1, wall1);
-		inv.setItem(9, wall1);
-		
-		inv.setItem(2, wall2);
-		inv.setItem(3, wall2);
-		inv.setItem(4, wall2);
-		inv.setItem(5, wall2);
-		inv.setItem(6, wall2);
-
-		inv.setItem(7, wall1);
-		inv.setItem(8, wall1);
-		inv.setItem(17, wall1);
-
-		inv.setItem(26, wall2);
-		inv.setItem(35, wall2);
-		
-		inv.setItem(36, wall1);
-		inv.setItem(45, wall1);
-		inv.setItem(46, wall1);
-		
-		inv.setItem(47, wall2);
-		inv.setItem(48, wall2);
-		inv.setItem(49, wall2);
-		inv.setItem(50, wall2);
-		inv.setItem(51, wall2);
-
-		inv.setItem(44, wall1);
-		inv.setItem(53, wall1);
-		inv.setItem(52, wall1);
-		
-		inv.setItem(18, wall2);
-		inv.setItem(27, wall2);
-		
-		inv.setItem(10, wall2);
-		inv.setItem(37, wall2);
-		inv.setItem(43, wall2);
-		inv.setItem(16, wall2);
-		
-		inv.setItem(11, Utils.createItem("§cBasic", Material.IRON_PICKAXE, 1));
-		inv.setItem(15, Utils.createItem("§cTelecom", Material.NETHER_STAR, 1));
-		inv.setItem(38, Utils.createItem("§cBuilder", Material.BRICK, 1));
-		inv.setItem(42, Utils.createItem("§cMax TNT", Material.TNT, 4));
+		_main=main;
+		Collection<Kit> allKit = Kit.getAllKit();
+		/*
+		 * Bug a coriger
+		Kit bKit =Kit.getKit("Basic");
+		allKit.remove(bKit);
+		inv.setItem(curentSet, Utils.createItem("test", Kit.getKit("Basic").getMaterial(), 1));
+		*/
 		for(Player player : _main.players) {
+			int curentSet=-1;
+			Inventory inv = Bukkit.createInventory(null, 54,"§cKit selector");
+			for(Kit kit : allKit) {
+				curentSet++;
+				if(PlayerData.getPlayerData(player).haveKit(kit)) {
+					inv.setItem(curentSet, Utils.createItem(kit.getItemName(), kit.getMaterial(), 1));
+				}else {
+					inv.setItem(curentSet, new ItemStack(Material.STAINED_GLASS_PANE, 1, (short) 5));
+				}
+				if(!(curentSet<44)) {
+					break;
+				}
+			}
 			player.openInventory(inv);
+			System.err.println(PlayerData.getPlayerData(player).getKit().size());
 		}
 	}
 

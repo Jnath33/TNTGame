@@ -28,6 +28,7 @@ public class Start implements CommandExecutor {
 			_main.state=State.Lancement;
 			Starting game = new Starting(_main);
 			game.runTaskTimer(_main, 0, 20);
+			return true;
 		}
 		
 		return false;

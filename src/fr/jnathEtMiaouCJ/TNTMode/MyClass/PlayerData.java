@@ -2,6 +2,7 @@ package fr.jnathEtMiaouCJ.TNTMode.MyClass;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,13 +15,13 @@ public class PlayerData implements Serializable{
 	 */
 	private static final long serialVersionUID = 7098619538188328744L;
 	private static Map<String, PlayerData> s_all_player_data = new HashMap<String, PlayerData>();
-	private List<Kit> _myKit;
+	private List<String> _myKit;
 	private int _coins;
 	private int _xpTotal;
 	private String _playerName;
 	private String _playerUID;
 	
-	public PlayerData(List<Kit> kits, int coin, int xpTotal, Player player) {
+	public PlayerData(List<String> kits, int coin, int xpTotal, Player player) {
 		_myKit=kits;
 		_coins=coin;
 		_xpTotal=xpTotal;
@@ -37,11 +38,8 @@ public class PlayerData implements Serializable{
 		s_all_player_data.put(_playerName, this);
 		
 	}
-	public static boolean haveKit(Player player, Kit kit) {
-		if(s_all_player_data.containsKey(player.getName())) {
-			return s_all_player_data.get(player.getName())._myKit.contains(kit);
-		}
-		return false; 
+	public boolean haveKit(Kit kit) {
+		return _myKit.contains(kit.getName()); 
 	}
 	public int getCoins() {
 		return _coins;
@@ -63,6 +61,13 @@ public class PlayerData implements Serializable{
 		}
 		return lvl;
 	}
+	public List<Kit> getKit(){
+		List<Kit> myKit = new ArrayList<Kit>();
+		for(String kitS : _myKit) {
+			myKit.add(Kit.getKit(kitS));
+		}
+		return myKit;
+	}
 	public void save() throws IOException {
 		FichierPlayerData file = new FichierPlayerData(_playerUID);
 		file.ouvrir("E");
@@ -71,5 +76,8 @@ public class PlayerData implements Serializable{
 	}
 	public static PlayerData getPlayerData(Player player) {
 		return s_all_player_data.get(player.getName());
+	}
+	public static void rmPlayerData(Player player) {
+		s_all_player_data.remove(player.getName());
 	}
 }

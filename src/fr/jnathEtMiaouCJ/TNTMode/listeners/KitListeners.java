@@ -28,15 +28,12 @@ public class KitListeners implements Listener{
 	public void onInteract(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		if(event.getItem()==null)return;
-		if(player.getLocation().getY()>55) {
-			player.sendMessage("Allez plus bas pour utiliser ceci.");
-			return;
-		}
+		if(!event.getItem().hasItemMeta())return;
 		ItemStack it = event.getItem();
 		Location loc = player.getLocation();
 		float dir = loc.getYaw();
 		int mov = 0;
-		if(it.getItemMeta().getDisplayName().contains("§cCanon build")) {
+		if(it.getItemMeta().getDisplayName().contains("Canon build")) {
 			if(it.getAmount()==2) {
 				new ItemPlace(Utils.createItem("§cCanon build", Material.STICK, 1), 5).setItem(player);
 			} else{
@@ -52,18 +49,18 @@ public class KitListeners implements Listener{
 				mov = 18;
 			}
 			Utils.copy(new Vector(755,201,-284-mov), new Vector(750,204,-279-mov), new BlockVector(new Vector(loc.getX(), loc.getY()-1, loc.getZ())), BukkitUtil.getLocalWorld(_main.world));
-		}else if(it.getItemMeta().getDisplayName().contains("§cTower")) {
+		}else if(it.getItemMeta().getDisplayName().contains("Tower")) {
 			System.err.println("test");
 			if(it.getAmount()==2) {
-				new ItemPlace(Utils.createItem("§cTower", Material.STICK, 1), 6).setItem(player);
+				new ItemPlace(Utils.createItem("§cTower", Material.ANVIL, 1), 6).setItem(player);
 			} else{
 				player.getInventory().clear(6);
 			}
 			Utils.copy(new Vector(748,202,-298), new Vector(742,210,-305), new BlockVector(new Vector(loc.getX()-3, loc.getY()+2, loc.getZ()-3)), BukkitUtil.getLocalWorld(_main.world));
-		}else if(it.getItemMeta().getDisplayName().contains("§cTNT cube(3×3)")) {
+		}else if(it.getItemMeta().getDisplayName().contains("TNT cube(3×3)")) {
 			Utils.copy(new Vector(745,201,-278), new Vector(743,203,-280), new BlockVector(new Vector(loc.getX()-1, loc.getY()+2, loc.getZ()-1)), BukkitUtil.getLocalWorld(_main.world));
 			player.getInventory().clear(7);
-		}else if(it.getItemMeta().getDisplayName().contains("§cTNT cube(7×7)")) {
+		}else if(it.getItemMeta().getDisplayName().contains("TNT cube(7×7)")) {
 			Utils.copy(new Vector(745,201,-286), new Vector(739,207,-292), new BlockVector(new Vector(loc.getX()-3, loc.getY()+2, loc.getZ()-3)), BukkitUtil.getLocalWorld(_main.world));
 			player.getInventory().clear(8);
 		}

@@ -131,14 +131,13 @@ public class GplayerListener implements Listener {
 				_main.playerOnGame.remove(player);
 			}
 		}
-		PlayerData.getPlayerData(player).addCoins(2);;
+		System.err.println(PlayerData.getPlayerData(player).haveKit(Kit.getKit("Basic")));
 		try {
 			PlayerData.getPlayerData(player).save();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(PlayerData.getPlayerData(player).getCoins());
+		PlayerData.rmPlayerData(player);
 	}
 	
 	@EventHandler
@@ -181,14 +180,14 @@ public class GplayerListener implements Listener {
 	public void onClick(InventoryClickEvent event) {
 		if(event.getInventory()!=null&&event.getInventory().getName().contains("§cKit selector")) {
 			if(event.getCurrentItem()!=null) {
-				if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cBasic")) {
-					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("Basic"));
-				}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cTelecom")) {
-					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("Distance"));
-				}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cBuilder")) {
-					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("builder"));
-				}else if(event.getCurrentItem().getItemMeta().getDisplayName().contains("§cMax TNT")) {
-					_main.playerKit.put((Player) event.getWhoClicked(), Kit.getKit("More TNT"));
+				if(event.getCurrentItem().hasItemMeta()) {
+					String iName = event.getCurrentItem().getItemMeta().getDisplayName();
+					for (Kit kit : Kit.getAllKit()) {
+						if(iName.contains(kit.getItemName())){
+							_main.playerKit.put((Player) event.getWhoClicked(), kit);
+							break;
+						}
+					}
 				}
 			}
 		}
