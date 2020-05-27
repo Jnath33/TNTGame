@@ -9,3 +9,5 @@ TNTMode:
   - "792.5,34.0,-330.5"
   - "793.5,34.0,-331.5"
   - "792.5,34.0,-331.5"
+  locationInfiniteAir:
+  relativeFolder: "../TNTData/"

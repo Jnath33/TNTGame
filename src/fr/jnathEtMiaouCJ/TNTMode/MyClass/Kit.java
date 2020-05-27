@@ -1,5 +1,6 @@
 package fr.jnathEtMiaouCJ.TNTMode.MyClass;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,7 +8,11 @@ import java.util.Map;
 
 import org.bukkit.entity.Player;
 
-public class Kit {
+public class Kit implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2233441325565162827L;
 	private static Map<Kit, Integer> s_all_tnt_per_kit = new HashMap<Kit, Integer>();
 	private static Map<String, Kit> s_all_kit = new HashMap<String, Kit>();
 	private List<ItemPlace> itemList = new ArrayList<ItemPlace>();

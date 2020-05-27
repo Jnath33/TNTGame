@@ -1,5 +1,7 @@
 package fr.jnathEtMiaouCJ.TNTMode.listeners;
 
+import java.io.IOException;
+
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -21,7 +23,9 @@ import org.bukkit.inventory.ItemStack;
 
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.FichierPlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.PlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.task.TNTWaitBreak;
 
@@ -34,6 +38,7 @@ public class GplayerListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
+		FichierPlayerData.init(player.getUniqueId().toString(), player);
 		if(!(_main.state==State.AttenteDeJoueur)) {
 			if(!_main.getConfig().getBoolean("TNTMode.bungee")) {
 				player.kickPlayer("Une partie est déja en cours");
@@ -126,6 +131,14 @@ public class GplayerListener implements Listener {
 				_main.playerOnGame.remove(player);
 			}
 		}
+		PlayerData.getPlayerData(player).addCoins(2);;
+		try {
+			PlayerData.getPlayerData(player).save();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(PlayerData.getPlayerData(player).getCoins());
 	}
 	
 	@EventHandler

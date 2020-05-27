@@ -21,6 +21,7 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
+import fr.jnathEtMiaouCJ.TNTMode.MyClass.FichierPlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.Kit;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.commande.Start;
@@ -50,7 +51,6 @@ public class Main extends JavaPlugin{
 		saveDefaultConfig();
 		worldName = getConfig().getString("TNTMode.world");
 		world = Bukkit.getWorld(worldName);
-		
 		state=State.AttenteDeJoueur;
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(new GplayerListener(this), this);
@@ -61,6 +61,11 @@ public class Main extends JavaPlugin{
 		
 		SetKit.set();
 		
+		FichierPlayerData.setDefauldRepertory(getConfig().getString("TNTMode.relativeFolder"));
+		if(!new File(getConfig().getString("TNTMode.relativeFolder")).exists()) {
+			new File(getConfig().getString("TNTMode.relativeFolder")).mkdir();
+		}
+		
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 	}
 	
@@ -69,7 +74,7 @@ public class Main extends JavaPlugin{
         out.writeUTF("Connect");
         out.writeUTF(server);
         
-      //Envoyer un message au joueur pour le pr�venir (FACULTATIF)
+      //Envoyer un message au joueur pour le prévenir (FACULTATIF)
         player.sendMessage(ChatColor.GREEN+"Vous etes envoye sur "+ChatColor.GOLD+server);
 
         player.sendPluginMessage(this, "BungeeCord", out.toByteArray());
