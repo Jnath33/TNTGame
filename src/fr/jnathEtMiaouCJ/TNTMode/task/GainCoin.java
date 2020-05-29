@@ -14,7 +14,7 @@ public class GainCoin extends BukkitRunnable{
 	@Override
 	public void run() {
 		for(Player pls : _main.playerOnGame) {
-			PlayerData.getPlayerData(pls).addCoins(1);			
+			PlayerData.getPlayerData(pls).addCoins(105);			
 		}
 				
 	}

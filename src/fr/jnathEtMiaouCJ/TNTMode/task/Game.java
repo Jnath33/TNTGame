@@ -1,5 +1,6 @@
 package fr.jnathEtMiaouCJ.TNTMode.task;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +73,13 @@ public class Game extends BukkitRunnable{
 			airSpawnBlock.getBlock().setType(Material.AIR);			
 		}
 		if(_main.playerOnGame.size()==1) {
+			for(Player pls : Bukkit.getOnlinePlayers()) {
+				try {
+					PlayerData.getPlayerData(pls).save();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			Bukkit.broadcastMessage(_main.playerOnGame.get(0).getDisplayName()+" à gagner");
 			PlayerData.getPlayerData(_main.playerOnGame.get(0)).addCoins(4000);
 			Redémarage redémare = new Redémarage(_main);
