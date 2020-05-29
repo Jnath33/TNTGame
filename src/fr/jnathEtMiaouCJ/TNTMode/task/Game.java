@@ -43,7 +43,6 @@ public class Game extends BukkitRunnable{
 		}
 		for(Player pls : _main.playerOnGame) {
 			pls.setFoodLevel(20);
-			PlayerData.getPlayerData(pls).addCoins(1);
 			if(pls.getLocation().getY()<-2) {
 				pls.setHealth(20);
 				if(_main.Life.get(pls)-1==0) {

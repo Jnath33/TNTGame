@@ -75,6 +75,8 @@ public class Starting extends BukkitRunnable{
 			}
 			Game game = new Game(_main);
 			game.runTaskTimer(_main, 300, 2);
+			GainCoin coin = new GainCoin(_main);
+			coin.runTaskTimer(_main, 0, 200);
 			Bukkit.broadcastMessage(ChatColor.RED+"La partie va commencer bonne chance");
 			cancel();
 		}

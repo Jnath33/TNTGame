@@ -20,7 +20,6 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
-import fr.jnath.TNTMode.FichierPlayerData;
 import fr.jnath.TNTMode.Kit;
 import fr.jnath.TNTMode.PlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
@@ -37,7 +36,6 @@ public class GplayerListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		FichierPlayerData.init(player.getUniqueId().toString(), player);
 		if(!(_main.state==State.AttenteDeJoueur)) {
 			if(!_main.getConfig().getBoolean("TNTMode.bungee")) {
 				player.kickPlayer("Une partie est déja en cours");
