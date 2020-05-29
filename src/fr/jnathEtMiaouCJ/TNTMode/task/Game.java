@@ -12,12 +12,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.jnath.TNTMode.Kit;
+import fr.jnath.TNTMode.PlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
 
 
 public class Game extends BukkitRunnable{
 	int time = 0;
+	int totalTime = 0;
 	List<Location> sousSpawn = new ArrayList<Location>();
 	List<Location> airSpawn = new ArrayList<Location>();
 	Main _main;
@@ -41,6 +43,7 @@ public class Game extends BukkitRunnable{
 		}
 		for(Player pls : _main.playerOnGame) {
 			pls.setFoodLevel(20);
+			PlayerData.getPlayerData(pls).addCoins(1);
 			if(pls.getLocation().getY()<-2) {
 				pls.setHealth(20);
 				if(_main.Life.get(pls)-1==0) {
@@ -71,6 +74,7 @@ public class Game extends BukkitRunnable{
 		}
 		if(_main.playerOnGame.size()==1) {
 			Bukkit.broadcastMessage(_main.playerOnGame.get(0).getDisplayName()+" à gagner");
+			PlayerData.getPlayerData(_main.playerOnGame.get(0)).addCoins(4000);
 			Redémarage redémare = new Redémarage(_main);
 			redémare.runTaskLater(_main, 600);
 			cancel();

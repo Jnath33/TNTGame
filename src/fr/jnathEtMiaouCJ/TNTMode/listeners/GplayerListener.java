@@ -1,6 +1,5 @@
 package fr.jnathEtMiaouCJ.TNTMode.listeners;
 
-import java.io.IOException;
 
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -131,13 +130,6 @@ public class GplayerListener implements Listener {
 				_main.playerOnGame.remove(player);
 			}
 		}
-		System.err.println(PlayerData.getPlayerData(player).haveKit(Kit.getKit("Basic")));
-		try {
-			PlayerData.getPlayerData(player).save();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		PlayerData.rmPlayerData(player);
 	}
 	
 	@EventHandler
@@ -152,6 +144,7 @@ public class GplayerListener implements Listener {
 			} else if(event.getBlock().getType()==Material.HARD_CLAY) {
 				new TNTDist(event.getPlayer(), event.getBlock().getLocation());
 			} else if(event.getBlock().getType()==Material.TNT) {
+				PlayerData.getPlayerData(event.getPlayer()).addCoins(10);
 				return;
 			}
 			else {
