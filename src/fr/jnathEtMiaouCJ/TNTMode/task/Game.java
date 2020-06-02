@@ -29,7 +29,7 @@ public class Game extends BukkitRunnable{
 		for(String locStr : _main.getConfig().getStringList("TNTMode.locationInfiniteBlock")) {
 			sousSpawn.add(_main.stringToLoc(locStr));
 		}
-		for(String locStr : _main.getConfig().getStringList("TNTMode.locationInfiniteBlock")) {
+		for(String locStr : _main.getConfig().getStringList("TNTMode.locationInfiniteAir")) {
 			airSpawn.add(_main.stringToLoc(locStr));
 		}
 	}
