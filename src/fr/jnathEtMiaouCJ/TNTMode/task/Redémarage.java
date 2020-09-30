@@ -1,10 +1,13 @@
 package fr.jnathEtMiaouCJ.TNTMode.task;
 
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.jnath.TNTMode.PlayerData;
 import fr.jnathEtMiaouCJ.TNTMode.Main;
 
 
@@ -23,13 +26,24 @@ public class Redémarage extends BukkitRunnable{
 		if(!_main.getConfig().getBoolean("TNTMode.bungee")) {
 			for(Player pls : Bukkit.getOnlinePlayers()) {
 				pls.kickPlayer("Le serveur redémare");
+				try {
+					PlayerData.getPlayerData(pls).save();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		} else {
 			String serv = _main.getConfig().getString("TNTMode.bungeeHubName");
 			for(Player pls : Bukkit.getOnlinePlayers()) {
 				_main.teleportServer(pls, serv);
+				try {
+					PlayerData.getPlayerData(pls).save();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
-		Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stop");
+		Stop stop = new Stop();
+		stop.runTaskLater(_main, 10);
 	}
 }
