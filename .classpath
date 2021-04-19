@@ -7,8 +7,8 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/home/nathan/Téléchargements/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
-	<classpathentry kind="lib" path="/home/nathan/Compétition/servers/TNTMode/plugins/utils.jar"/>
-	<classpathentry kind="lib" path="/home/nathan/Compétition/servers/TNTMode/plugins/worldedit-bukkit-6.1.jar"/>
-	<classpathentry kind="lib" path="/home/nathan/Compétition/servers/TNTMode/plugins/TNTGameAPI.jar"/>
+	<classpathentry kind="lib" path="/home/nathan/Compétition/pluginsCodeDépends/utils.jar"/>
+	<classpathentry kind="lib" path="/home/nathan/Compétition/pluginsCodeDépends/worldedit-bukkit-6.1.jar"/>
+	<classpathentry kind="lib" path="/home/nathan/Compétition/pluginsCodeDépends/TNTGameAPI.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

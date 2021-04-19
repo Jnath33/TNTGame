@@ -21,12 +21,12 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import fr.jnath.TNTMode.Kit;
+import fr.jnath.Utils.Utils;
 import fr.jnathEtMiaouCJ.TNTMode.Enum.State;
 import fr.jnathEtMiaouCJ.TNTMode.MyClass.TNTDist;
 import fr.jnathEtMiaouCJ.TNTMode.commande.Start;
 import fr.jnathEtMiaouCJ.TNTMode.listeners.GplayerListener;
 import fr.jnathEtMiaouCJ.TNTMode.listeners.KitListeners;
-import fr.jnathEtMiaouCJ.TNTMode.utils.rejen;
 
 
 public class Main extends JavaPlugin{
@@ -93,9 +93,9 @@ public class Main extends JavaPlugin{
 		Bukkit.unloadWorld(world, false);
 		File worldFile = new File(world.getName());
 		File worldCopyFile = new File(worldName+"-copy");
-		rejen.deleateWorld(worldFile);
+		Utils.deleateWorld(worldFile);
 		try {
-			rejen.copyWorld(worldCopyFile, worldFile);
+			Utils.copyWorld(worldCopyFile, worldFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

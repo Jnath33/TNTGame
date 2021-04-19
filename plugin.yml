@@ -2,6 +2,7 @@ name: TNTMode
 version: 1.0
 author: jnath&miaouCJ
 main: fr.jnathEtMiaouCJ.TNTMode.Main
+depend: [Utils]
 commands:
   start:
     description: permet de lancer le serveurs manuellement
